@@ -1,0 +1,23 @@
+@import url("../src/assets/css/satoshi.css");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+    font-family: Satoshi-Light;
+    font-family: Satoshi-Regular;
+    font-family: Satoshi-Medium;
+    font-family: Satoshi-Bold;
+    font-family: Satoshi-Black;
+    font-family: Satoshi-Variable;
+
+}
+html,
+body {
+  margin: 0;
+  padding: 0;
+  /* Optional: Set the height to 100% to allow full-page layouts */
+  height: 100%;
+  scroll-behavior: smooth;
+}

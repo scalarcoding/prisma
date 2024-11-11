@@ -1,0 +1,130 @@
+import { useEffect, useState } from "react";
+import { Link, useParams } from "react-router-dom";
+import ProductsMenuBar from "./atomic/ProductsMenuBar";
+import { ProductCategories } from "@/constants/categories/categories";
+import { ProductPagination } from "./atomic/ProductPagination";
+import { Button } from "@/components/ui/button";
+import {
+  TbLayoutGrid,
+  TbList,
+  TbSortAZ,
+  TbSortZA,
+} from "react-icons/tb";
+import ProductCard from "./atomic/ProductCard";
+import { supabase } from "@/lib/SupabaseClient";
+import { toast } from "sonner";
+import { Toaster } from "@/components/ui/toaster";
+import { ProductType } from "./atomic/productype";
+
+const Products = () => {
+  const [products, setProducts] = useState<ProductType[]>([])
+  const { id } = useParams(); // Get the id from the URL params
+
+  useEffect(() => {
+    console.log(id);
+    getProduct();
+
+  },[]);
+
+  const getProduct = async() =>{
+    const fetchedProducts = await fetchProducts();
+    setProducts(fetchedProducts)
+  }
+
+
+  async function fetchProducts(): Promise<ProductType[]> {
+    const { data, error } = await supabase
+    .from('catalogue')
+    .select(`
+      reg_number,
+      item_description,
+      pn_preference!inner(part_number, img_url)
+    `)
+    .eq('pn_preference.preference', '01') // Apply filter on pn_preference table
+
+    .limit(16);
+
+    if(error){
+      toast.error("An error has occured");
+      return[];
+    }
+    console.log(data);
+    // Format the data to match the ProductType structure
+    const products: ProductType[] = data.map(item => ({
+      reg_number: item.reg_number,
+      item_description: item.item_description,
+      part_number: item.pn_preference.part_number,
+      img_url: item.pn_preference.img_url
+    }))
+
+  return products
+  }
+
+  return (
+    <div className="">
+      <Toaster/>
+      <ProductsMenuBar />
+      <div className="main__contents flex flex-row h-3/4 w-full">
+        <div className="products__sidebar w-1/6 flex-grow hidden md:flex">
+          <ul className="flex flex-col gap-4">
+            <li className="hover:underline cursor-pointer font-bold">
+              <Link
+                to="/products"
+                className={!id ? "text-blue-600 font-bold" : ""}
+              >
+                All
+              </Link>
+            </li>
+            {ProductCategories.map((item) => {
+              const isActive = item.href === `/products/${id}`; // Check if the href matches the id from params
+              return (
+                <li className="hover:underline cursor-pointer" key={item.label}>
+                  <Link
+                    to={item.href}
+                    className={isActive ? "text-blue-600 font-bold" : ""}
+                  >
+                    {item.label}
+                  </Link>
+                </li>
+              );
+            })}
+          </ul>
+        </div>
+
+        <div className="products__list w-full md:w-5/6">
+          <div className="product__list-header h-16 flex items-center justify-between pb-2 border-b-2 border-slate-200">
+            <div className="views hidden md:flex flex-row gap-0">
+              <Button variant="ghost">
+                <TbList></TbList>
+              </Button>
+              <Button variant="ghost">
+                <TbLayoutGrid />
+              </Button>
+              <Button variant="ghost">
+                <TbSortAZ />
+              </Button>
+              <Button variant="ghost">
+                <TbSortZA />
+              </Button>
+            </div>
+            <ProductPagination />
+          </div>
+          <div className="products mt-4 grid grid-cols-2 md:grid-cols-4 gap-2">
+            {products
+              .map((item) => (
+                <ProductCard
+                key={item.reg_number}
+                img_url={item.img_url}
+                reg_number={item.reg_number}
+                part_number={item.part_number}
+                item_description={item.item_description}
+                />
+              ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default Products;
