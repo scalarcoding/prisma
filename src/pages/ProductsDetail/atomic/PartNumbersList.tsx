@@ -34,20 +34,21 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table"
+import GoodsAvatar from "./GoodsAvatar"
 
 // Updated data structure with more than 10 items for pagination
 const data: PartNumberList[] = [
-  { id: 1, part_number: "PN-001", img_url: "/images/success.png", preference: "01" },
-  { id: 2, part_number: "PN-002", img_url: "/images/success.png", preference: "02" },
-  { id: 3, part_number: "PN-003", img_url: "/images/processing.png", preference: "03" },
-  { id: 4, part_number: "PN-004", img_url: "/images/success.png", preference: "04" },
-  { id: 5, part_number: "PN-005", img_url: "/images/failed.png", preference: "88" },
-  { id: 6, part_number: "PN-006", img_url: "/images/failed.png", preference: "05" },
-  { id: 7, part_number: "PN-007", img_url: "/images/success.png", preference: "98" },
-  { id: 8, part_number: "PN-008", img_url: "/images/processing.png", preference: "02" },
-  { id: 9, part_number: "PN-009", img_url: "/images/success.png", preference: "45" },
-  { id: 10, part_number: "PN-010", img_url: "/images/success.png", preference: "99" },
-  { id: 11, part_number: "PN-011", img_url: "/images/success.png", preference: "01" },
+  { id: 1, part_number: "PN-001", img_url: "", preference: "01" },
+  { id: 2, part_number: "PN-002", img_url: "", preference: "02" },
+  { id: 3, part_number: "PN-003", img_url: "", preference: "03" },
+  { id: 4, part_number: "PN-004", img_url: "", preference: "04" },
+  { id: 5, part_number: "PN-005", img_url: "", preference: "88" },
+  { id: 6, part_number: "PN-006", img_url: "", preference: "05" },
+  { id: 7, part_number: "PN-007", img_url: "", preference: "98" },
+  { id: 8, part_number: "PN-008", img_url: "", preference: "02" },
+  { id: 9, part_number: "PN-009", img_url: "", preference: "45" },
+  { id: 10, part_number: "PN-010", img_url: "", preference: "99" },
+  { id: 11, part_number: "PN-011", img_url: "", preference: "01" },
 ]
 
 export type PartNumberList = {
@@ -74,6 +75,9 @@ export const columns: ColumnDef<PartNumberList>[] = [
     accessorKey: "img_url",
     header: "Image",
     cell: ({ row }) => (
+        row.getValue("img_url")== "" ? <div className="h-8 w-8">
+            <GoodsAvatar/> 
+        </div>:
       <img
         src={row.getValue("img_url")}
         alt="Status Icon"
@@ -205,7 +209,13 @@ export function PartNumbersList() {
                 <TableRow
                   key={row.id}
                   data-state={row.getIsSelected() && "selected"}
-                  className={row.getIsSelected() ? "bg-gray-200" : ""}
+                  className={
+                    row.getValue("preference") === "01"
+                      ? "bg-slate-300"
+                      : row.getIsSelected()
+                      ? "bg-gray-200"
+                      : ""
+                  }
                 >
                   {row.getVisibleCells().map((cell) => (
                     <TableCell key={cell.id}>
