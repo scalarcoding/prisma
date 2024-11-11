@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { SkeletonCard } from "../../../components/ui/skeletons/SkeletonCard";
 import { Link, useNavigate } from "react-router-dom";
-import FallBackImage from "/assets/img/fallback_image.png";
 import { ProductType } from "./productype";
 import { Button } from "@/components/ui/button";
 import { TbEdit, TbShoppingBagPlus, TbStar } from "react-icons/tb";
@@ -16,11 +15,6 @@ const ProductCard: React.FC<ProductType> = ({
   const [isLoading, setIsLoading] = useState(true);
   const [isHovered, setIsHovered] = useState(false);
   const navigate = useNavigate();
-
-  // Handle image loading
-  const handleImageLoad = () => {
-    setIsLoading(false);
-  };  
 
   useState(() => {
       setIsLoading(false);

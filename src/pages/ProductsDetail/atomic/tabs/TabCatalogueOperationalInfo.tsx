@@ -13,7 +13,15 @@ const TabCatalogueOperationalInfo = () => {
           </CardDescription>
         </CardHeader>
         <CardContent className="space-y-2">
+        <CardTitle>Part Number Preferences</CardTitle>
           <PartNumbersList/>  
+        </CardContent>
+        <CardContent className="space-y-2">
+        <CardTitle>Global Cross-Reference Mapping</CardTitle>
+        <CardDescription>
+            Global assignment / modification of cross reference
+          </CardDescription>
+          
         </CardContent>
         <CardFooter>
           <Button>Save changes</Button>
