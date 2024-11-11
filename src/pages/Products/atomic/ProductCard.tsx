@@ -5,6 +5,7 @@ import FallBackImage from "/assets/img/fallback_image.png";
 import { ProductType } from "./productype";
 import { Button } from "@/components/ui/button";
 import { TbEdit, TbShoppingBagPlus, TbStar } from "react-icons/tb";
+import GoodsAvatar from "@/pages/ProductsDetail/atomic/GoodsAvatar";
 
 const ProductCard: React.FC<ProductType> = ({
   reg_number,
@@ -34,7 +35,7 @@ const ProductCard: React.FC<ProductType> = ({
     <div>
       <div
         key={reg_number}
-        className="card bg-white hover:bg-stone-200 ease-in-out transition p-4 border rounded-lg"
+        className="card bg-white hover:bg-slate-100 ease-in-out transition p-4 border rounded-lg"
       >
         <div className="relative">
           {isLoading ? (
@@ -43,16 +44,24 @@ const ProductCard: React.FC<ProductType> = ({
             </div>
           ) : (
             <div>
-              <Link to={`/product/detail/${reg_number}`}>
+
+              {img_url==""? <GoodsAvatar/> : 
+              <img
+              src={img_url}
+              alt="img"
+              className="block object-scale-down border rounded-lg border-gray-100"
+            />
+              }
+              {/* <Link to={`/product/detail/${reg_number}`}>
                 <img
-                  src={img_url === null ? FallBackImage : img_url}
+                  src={img_url === "" ? FallBackImage : img_url}
                   alt="img"
                   onLoad={handleImageLoad}
                   className={`w-full h-40 object-cover ${
                     isLoading ? "hidden" : "block object-scale-down border rounded-lg border-gray-100"
                   }`}
                 />
-              </Link>
+              </Link> */}
               <Link to={`/product/detail/${reg_number}`}>
               <h3 className="mt-4 text-lg font-semibold text-blue-600 hover:underline cursor-pointer">{reg_number}</h3>
               </Link>
