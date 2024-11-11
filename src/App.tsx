@@ -7,9 +7,9 @@ import Dashboard from "./pages/Dashboard/Dashboard";
 import Home from "./pages/Home/Home";
 import Products from "./pages/Products/Products";
 import OutstandingWR from "./pages/Orders/OutstandingWR";
-import CreateWR from "./pages/CreateWr/CreateWr";
 import ProductsMaintenance from "./pages/ProductsMaintenance/ProductsMaintenance";
 import ProductsDetail from "./pages/ProductsDetail/ProductsDetail";
+import CreateWR from "./pages/CreateWr/CreateWR";
 
 function App() {
   return (

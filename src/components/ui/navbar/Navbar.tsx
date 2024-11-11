@@ -1,4 +1,3 @@
-import React from "react";
 import LogoIcon from "../../../../src/assets/logoicon.svg";
 import { Button } from "../button";
 import { TbAlignRight, TbShoppingBag } from "react-icons/tb";

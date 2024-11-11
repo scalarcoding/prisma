@@ -13,7 +13,7 @@ import {
   getSortedRowModel,
   useReactTable,
 } from "@tanstack/react-table"
-import { ArrowUpDown, ChevronDown, MoreHorizontal } from "lucide-react"
+import { ArrowUpDown, MoreHorizontal } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
 import { Checkbox } from "@/components/ui/checkbox"
@@ -34,7 +34,6 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table"
-import { DropdownMenuCheckboxItem } from "@radix-ui/react-dropdown-menu"
 
 // Updated data structure with more than 10 items for pagination
 const data: PartNumberList[] = [
@@ -61,11 +60,10 @@ export type PartNumberList = {
 export const columns: ColumnDef<PartNumberList>[] = [
   {
     id: "select",
-    header: ({ table }) => <div>Select</div>,
+    header: () => <div>Select</div>,
     cell: ({ row }) => (
       <Checkbox
         checked={row.original.preference === "01"}
-        readOnly
         aria-label="Select row"
       />
     ),

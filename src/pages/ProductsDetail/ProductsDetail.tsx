@@ -1,4 +1,3 @@
-import React from 'react'
 import { useParams } from 'react-router-dom'
 import ProductDetailBreadCrumb from './atomic/ProductDetailBreadCrumb';
 import ProductBasicInfo from './atomic/ProductBasicInfo';
@@ -15,7 +14,7 @@ const ProductsDetail = () => {
       </div>
 
       <div className='pt-8'>
-      <ProductBasicInfo reg_number={id!}/>
+      <ProductBasicInfo reg_number={parseInt(id!)}/>
       </div>
       <div className='md:mt-4 mt-64'>
       <ProductDetailInfo/>

@@ -1,5 +1,4 @@
 import { HeroSection } from '@/components/ui/hero/HeroSection'
-import React from 'react'
 import { HomePageNavbar } from '@/components/ui/navbar/atomic/CustomNavbarMenu'
 
 const Home = () => {

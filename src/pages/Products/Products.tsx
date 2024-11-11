@@ -47,8 +47,8 @@ const Products = () => {
     return data.map((item) => ({
       reg_number: item.reg_number,
       item_description: item.item_description,
-      part_number: item.pn_preference.part_number,
-      img_url: item.pn_preference.img_url,
+      part_number: item.pn_preference[0].part_number,
+      img_url: item.pn_preference[0].img_url,
     }));
   }
 

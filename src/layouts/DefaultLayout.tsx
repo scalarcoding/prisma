@@ -1,12 +1,8 @@
-import React, { useEffect, useState, ReactNode } from "react";
-import Header from "@/components/ui/header/Header";
-import { Sidebar } from "@/components/ui/sidebar";
-import { supabase } from "@/lib/SupabaseClient";
-import { Session } from "@supabase/supabase-js"; // Import Session type
+import React, { ReactNode } from "react";
 import Navbar from "@/components/ui/navbar/Navbar";
 
 const DefaultLayout: React.FC<{ children: ReactNode }> = ({ children }) => {
-  const [session, setSession] = useState<Session | null>(null);
+  // const [session, setSession] = useState<Session | null>(null);
 
   // useEffect(() => {
   //     // Function to fetch the session

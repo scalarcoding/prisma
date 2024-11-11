@@ -1,6 +1,5 @@
 import React from 'react';
 import { Input } from '@/components/ui/input'; // Assuming you're using ShadCN Input component
-import { FiSearch } from 'react-icons/fi'; // Using react-icons for the icon (you can replace it with any icon)
 
 type InputWithIconProps = {
   iconPosition: 'prefix' | 'suffix'; // Defines if the icon is on the left (prefix) or right (suffix)
