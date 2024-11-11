@@ -1,5 +1,5 @@
 import { useEffect, useState, ReactNode } from 'react';
-import { Route, Navigate, useLocation, useNavigate } from 'react-router-dom';
+import { Navigate, useLocation } from 'react-router-dom';
 import Loader from '@/components/ui/loader';
 import { Session } from '@supabase/supabase-js'; // Import Session type
 import { supabase } from '@/lib/SupabaseClient';

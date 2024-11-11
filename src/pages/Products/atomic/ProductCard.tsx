@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import FallBackImage from "/assets/img/fallback_image.png";
 import { ProductType } from "./productype";
 import { Button } from "@/components/ui/button";
-import { TbEdit, TbEditCircle, TbFavicon, TbShoppingBagPlus, TbStar } from "react-icons/tb";
+import { TbEdit, TbShoppingBagPlus, TbStar } from "react-icons/tb";
 
 const ProductCard: React.FC<ProductType> = ({
   reg_number,

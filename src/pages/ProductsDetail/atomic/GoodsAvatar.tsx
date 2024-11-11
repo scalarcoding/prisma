@@ -1,4 +1,3 @@
-import React from 'react'
 import { TbPackage } from 'react-icons/tb'
 
 const GoodsAvatar = () => {

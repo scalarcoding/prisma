@@ -1,6 +1,5 @@
 "use client";
 import React from "react";
-import { BackgroundBeams } from "../background-beams";
 import { PlaceholdersAndVanishInput } from "../placeholders-and-vanish-input";
 import { heroSearchPlaceholders } from "@/constants/placeholders";
 

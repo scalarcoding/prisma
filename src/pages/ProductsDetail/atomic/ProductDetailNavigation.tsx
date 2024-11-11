@@ -1,15 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
-import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
+import { useState, useEffect, useRef } from "react";
 import {
   Tabs,
   TabsList,
@@ -19,55 +8,67 @@ import tabsData from "./tabs/TabsMapping";
 
 // TabsDemo Component
 export function TabsDemo() {
-  const tabsListRef = useRef(null);
+  const tabsListRef = useRef<HTMLDivElement>(null);
   const [isScrolledToStart, setIsScrolledToStart] = useState(true);
   const [isScrolledToEnd, setIsScrolledToEnd] = useState(false);
   const [currentTab, setCurrentTab] = useState<string>("account");
   const [areButtonsHidden, setAreButtonsHidden] = useState(false);
 
 
-
-  const handleScroll = (direction: "left" | "right") => {
+  type Direction = "left" | "right";
+  
+  const handleScroll = (direction: Direction) => {
     const container = tabsListRef.current;
     const scrollAmount = 200;
 
-    if (direction === "left") {
-      container.scrollBy({ left: -scrollAmount, behavior: "smooth" });
-    } else if (direction === "right") {
-      container.scrollBy({ left: scrollAmount, behavior: "smooth" });
+    if (container) {
+      if (direction === "left") {
+        container.scrollBy({ left: -scrollAmount, behavior: "smooth" });
+      } else if (direction === "right") {
+        container.scrollBy({ left: scrollAmount, behavior: "smooth" });
+      }
     }
   };
 
   const updateButtonState = () => {
     const container = tabsListRef.current;
-    const scrollbarWidth = container.offsetWidth - container.clientWidth;
+    if (container) {
+      const scrollbarWidth = container.offsetWidth - container.clientWidth;
 
-    const isAtStart = container.scrollLeft <= 1;
-    const isAtEnd =
-      container.scrollLeft + container.clientWidth >= container.scrollWidth - scrollbarWidth - 1;
+      const isAtStart = container.scrollLeft <= 1;
+      const isAtEnd =
+        container.scrollLeft + container.clientWidth >=
+        container.scrollWidth - scrollbarWidth - 1;
 
-    setIsScrolledToStart(isAtStart);
-    setIsScrolledToEnd(isAtEnd);
+      setIsScrolledToStart(isAtStart);
+      setIsScrolledToEnd(isAtEnd);
+    }
   };
 
   const updateButtonVisibility = () => {
     const container = tabsListRef.current;
-    const totalTabsWidth = tabsData.length * 160 + (tabsData.length - 1) * 8;
-    const screenWidth = window.innerWidth;
+    if (container) {
+      const totalTabsWidth = tabsData.length * 160 + (tabsData.length - 1) * 8;
+      const screenWidth = window.innerWidth;
 
-    setAreButtonsHidden(totalTabsWidth <= screenWidth);
+      setAreButtonsHidden(totalTabsWidth <= screenWidth);
+    }
   };
 
   useEffect(() => {
     const container = tabsListRef.current;
-    container.addEventListener("scroll", updateButtonState);
-    updateButtonState();
-    updateButtonVisibility();
+    if (container) {
+      container.addEventListener("scroll", updateButtonState);
+      updateButtonState();
+      updateButtonVisibility();
+    }
 
     window.addEventListener("resize", updateButtonVisibility);
 
     return () => {
-      container.removeEventListener("scroll", updateButtonState);
+      if (container) {
+        container.removeEventListener("scroll", updateButtonState);
+      }
       window.removeEventListener("resize", updateButtonVisibility);
     };
   }, []);
