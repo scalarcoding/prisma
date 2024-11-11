@@ -38,19 +38,21 @@ const Products = () => {
       .eq("pn_preference.preference", "01")
       .order("reg_number", { ascending: true }) 
       .limit(16);
-
+  
     if (error) {
       toast.error("An error has occurred");
       return [];
     }
-
+  
+    // Map data while checking if `pn_preference` contains items
     return data.map((item) => ({
       reg_number: item.reg_number,
       item_description: item.item_description,
-      part_number: item.pn_preference.part_number,
-      img_url: item.pn_preference.img_url,
+      part_number: item.pn_preference?.[0]?.part_number || '',
+      img_url: item.pn_preference?.[0]?.img_url || '',
     }));
   }
+  
 
   const sidebar = (
     <ul className="flex flex-col gap-4 p-4">
