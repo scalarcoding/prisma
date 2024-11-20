@@ -36,7 +36,7 @@ const BasicTable: React.FC<BasicTableProps> = ({
     <div className="border rounded-lg overflow-hidden">
       <table className="min-w-full bg-white border">
         <TableHeader>
-          <TableRow className="border-b">
+          <TableRow className="border-b-0 bg-slate-200 hover:bg-slate-200">
             <TableHead className="px-4 py-2 text-left text-gray-600">District</TableHead>
             <TableHead className="px-4 py-2 text-left text-gray-600">Avb</TableHead>
             <TableHead className="px-4 py-2 text-left text-gray-600">Own<br></br>SOH</TableHead>

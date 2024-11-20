@@ -24,7 +24,7 @@ const ProductBasicInfo:React.FC<ProductBasicInfoProps>=({ reg_number }) => {
           </div>
         </div>
       </div>
-      <div className="col__two flex flex-col gap-1 h-full align-top border rounded-lg p-2">
+      {/* <div className="col__two flex flex-col gap-1 h-full align-top border rounded-lg p-2">
         <h1 className="text-lg">Catalogue Properties</h1>
         <div className="info_two">
           <div className="uoi grid grid-cols-2">
@@ -57,7 +57,7 @@ const ProductBasicInfo:React.FC<ProductBasicInfoProps>=({ reg_number }) => {
             <h1 className="text-sm">: EACH</h1>
           </div>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };
