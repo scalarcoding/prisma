@@ -18,7 +18,7 @@ import { TbCalendar, TbRuler } from "react-icons/tb";
 // Component for Account Tab
 const TabCatalogueGeneralInfo = () => {
 
-  const [productImages, setProductImages] = useState<File[]>([])
+  const [productImages] = useState<File[]>([])
 
   type MassCategory = {
     value:string,

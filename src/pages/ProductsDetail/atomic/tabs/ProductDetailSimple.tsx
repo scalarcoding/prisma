@@ -1,4 +1,3 @@
-import React from "react";
 import GoodsAvatar from "../GoodsAvatar";
 import { Link } from "react-router-dom";
 import { TbShoppingBagCheck, TbShoppingCart, TbStarFilled } from "react-icons/tb";
