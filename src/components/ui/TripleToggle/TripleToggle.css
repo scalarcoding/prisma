@@ -1,0 +1,59 @@
+.switch-toggle {
+    position: relative;
+    width: 100%;
+    margin: 10px auto;
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .switch-toggle input[type="radio"] {
+    display: none;
+  }
+  
+  .switch-toggle label {
+    cursor: pointer;
+    padding: 10px;
+    border: 1px solid #ccc;
+    background: #eee;
+    text-align: center;
+    flex: 1;
+    font-size:0.8rem;
+  }
+  
+  .switch-toggle label:hover {
+    background: #ddd;
+  }
+  
+  .switch-toggle input[type="radio"]:checked + label {
+    font-weight: bold;
+  }
+  
+  
+  .switch-toggle input[type="radio"]:nth-child(1):checked ~ a {
+    left: 0;
+  }
+  
+  .switch-toggle input[type="radio"]:nth-child(2):checked ~ a {
+    left: 33.33%;
+  }
+  
+  .switch-toggle input[type="radio"]:nth-child(3):checked ~ a {
+    left: 66.66%;
+  }
+  
+
+  input[id^="full_supply"]:checked + label {
+    background-color: #d4edda; /* Soft green */
+    color: #155724; /* Dark green text */
+  }
+  
+  input[id^="cancel_supply"]:checked + label {
+    background-color: #f8d7da; /* Soft red */
+    color: #721c24; /* Dark red text */
+  }
+  
+  input[id^="partial_supply"]:checked + label {
+    background-color: #fff3cd; /* Soft yellow */
+    color: #856404; /* Dark yellow text */
+  }
+  

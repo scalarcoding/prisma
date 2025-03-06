@@ -21,8 +21,9 @@ const DefaultLayout: React.FC<{ children: ReactNode }> = ({ children }) => {
 
   return (
     <div className="dark:bg-boxdark-2 dark:text-bodydark">
-      <header className="">
+      <header className="py-2">
         <Navbar/>
+
       </header>
       <main className="pt-4">
         <div className="mx-auto max-w-full p-4 md:p-6 2xl:p-2">{children}</div>

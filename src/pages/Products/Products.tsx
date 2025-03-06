@@ -6,52 +6,46 @@ import { ProductCategories } from "@/constants/categories/categories";
 import { ProductPagination } from "./atomic/ProductPagination";
 import { Button } from "@/components/ui/button";
 import { TbLayoutGrid, TbList, TbSearch, TbSortAZ, TbSortZA } from "react-icons/tb";
-import { supabase } from "@/lib/SupabaseClient";
+import { supabase } from "@/api/repository/supabase";
 import { toast } from "sonner";
 import { Toaster } from "@/components/ui/toaster";
 import { ProductType } from "./atomic/productype";
 import ProductsLayout from "./atomic/ProductsLayout";
 import ProductsList from "./atomic/ProducstList";
 import ProductsPlaceholder from "./atomic/ProductsPlaceholder";
+import { useAuth } from "@/hooks/use-auth";
 
 const Products = () => {
+  const { user } = useAuth();
   const [products, setProducts] = useState<ProductType[]>([]);
   const { id } = useParams();
 
   useEffect(() => {
     getProduct();
+    console.log(user);
+    
   }, []);
 
   const getProduct = async () => {
     const fetchedProducts = await fetchProducts();
+    console.log(fetchedProducts);
+    
     setProducts(fetchedProducts);
   };
 
   async function fetchProducts(): Promise<ProductType[]> {
-    const { data, error } = await supabase
-      .from("catalogue")
-      .select(`
-        reg_number,
-        item_description,
-        pn_preference!inner(part_number, img_url)
-      `)
-      .eq("pn_preference.preference", "01")
-      .order("reg_number", { ascending: true }) 
-      .limit(16);
-  
-    if (error) {
-      toast.error("An error has occurred");
-      return [];
-    }
-  
-    // Map data while checking if `pn_preference` contains items
-    return data.map((item) => ({
-      reg_number: item.reg_number,
-      item_description: item.item_description,
-      part_number: item.pn_preference?.[0]?.part_number || '',
-      img_url: item.pn_preference?.[0]?.img_url || '',
-    }));
+  const { data, error } = await supabase.rpc("fetch_products");
+
+  if (error) {
+    console.error("Supabase RPC Error:", error);
+    toast.error("Failed to fetch products.");
+    return [];
   }
+
+  return data as ProductType[];
+}
+
+  
   
 
   const sidebar = (

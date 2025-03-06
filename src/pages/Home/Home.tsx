@@ -10,7 +10,7 @@ const Home = () => {
       </div>
         <HeroSection/>
         <div className="p-4 most__order_section">
-        <h1>Most Ordered</h1>
+
         {/* <MovingCards/> */}
         </div>
 

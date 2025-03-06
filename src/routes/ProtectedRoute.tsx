@@ -2,7 +2,7 @@ import { useEffect, useState, ReactNode } from 'react';
 import { Navigate, useLocation } from 'react-router-dom';
 import Loader from '@/components/ui/loader';
 import { Session } from '@supabase/supabase-js'; // Import Session type
-import { supabase } from '@/lib/SupabaseClient';
+import { supabase } from '@/api/repository/supabase';
 
 interface ProtectedRouteProps {
   element: ReactNode;

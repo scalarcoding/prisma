@@ -4,14 +4,14 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 
 const NumberCounter: React.FC = () => {
-  const [count, setCount] = useState<number>(0);
+  const [count, setCount] = useState<number>(1);
 
   const increment = () => setCount(count + 1);
-  const decrement = () => setCount(count > 0 ? count - 1 : 0);
+  const decrement = () => setCount(count > 1 ? count - 1 : 1);
 
   const handleChangeNumber =(e:React.ChangeEvent<HTMLInputElement>)=>{
     if(!e.target.value){
-      setCount(0);
+      setCount(1);
       return;
     }
     setCount(parseInt(e.target.value))
