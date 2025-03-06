@@ -358,7 +358,6 @@ const GoodsIssue = () => {
     }
   }
   const handleChangeCheckboxToIssue = (
-    e: boolean | string,
     item_number: number
   ) => {
     setSupplyQty((prev) =>
@@ -470,9 +469,9 @@ const GoodsIssue = () => {
                             <TableRow key={item.item_number} className={`${ formatRowBySupplyStatus(item.supply_status) }`}>
                               <TableCell>
                                 <Checkbox
-                                  onCheckedChange={(e) =>
+                                  onCheckedChange={() =>
                                     handleChangeCheckboxToIssue(
-                                      e,
+                               
                                       item.item_number
                                     )
                                   }

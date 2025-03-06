@@ -1,7 +1,7 @@
 // components/ProtectedRoute.tsx
+import { AuthContext } from '@/context/AuthContext';
 import React, { useContext } from 'react';
 import { Navigate, Outlet } from 'react-router-dom';
-import { AuthContext } from "../Authentication/AuthContext";
 
 const ProtectedRoute: React.FC = () => {
   const { user, loading } = useContext(AuthContext) || { user: null, loading: true };

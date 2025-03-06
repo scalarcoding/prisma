@@ -9,7 +9,7 @@ import { ApiService } from "@/api/service/ApiService";
 type Backend = 'supabase' | 'mongodb' | 'postgresql';  // Type for the backend selector
 
 // Explicitly declare the backend type as one of the available backends
-const backend: Backend = 'supabase'; // You can change it to 'mongodb' or 'postgresql' to test
+const backend: Backend = 'supabase' as Backend; // You can change it to 'mongodb' or 'postgresql' to test
 
 let apiService: ApiService;
 
